@@ -204,6 +204,8 @@ class Wave:
             timestamp = datetime.now()
             await self.queue.put((self.data, timestamp))
 
+            await curio.sleep(0.01)
+
 
     async def get(self):
 

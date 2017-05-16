@@ -126,8 +126,8 @@ def plot_points_on_map(lats, lons,
         
     x, y = m(xlons, lats)
     #m.drawcoastlines()
-    m.drawmapboundary()
-    m.drawlsmask(alpha=1.)
+    #m.drawmapboundary()
+    #m.drawlsmask(alpha=1.)
     
     pts = m.scatter(x, y, alpha=alpha, c=color, edgecolors='none',
                     **kwargs)

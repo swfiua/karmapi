@@ -24,6 +24,7 @@ from requests import get, put
 
 from karmapi import base
 
+import paramiko
 
 class Pear:
 
@@ -69,11 +70,45 @@ class LocalPear:
 
         self.folder = Path(folder)
 
+    def get(self, path):
+
+        path = self.folder / path
+
+        with path.open() as infile:
+            content = infile.read()
+        
+        return content
+
     def mirror(self, path):
 
         shutil.copy(str(self.folder / path), str(path))
 
+
+
+class SshPear:
+
+
+    def __init__(self, host, folder, user=None):
+
+        self.folder = Path(folder)
+        self.client = paramiko.SSHClient()
+
+        self.client.load_system_host_keys()
+        #self.client.set_missing_host_key_policy(
+        #    paramiko.client.WarningPolicy)
+        self.client.connect(host, username=user)
+
+    def get(self, path):
+
+        path = self.folder / path
+
+        with self.client.open_sftp() as sftp:
+            
+            content = sftp.get(path)
         
+        return content
 
+    def mirror(self, path):
 
-    
+        shutil.copy(str(self.folder / path), str(path))
+        

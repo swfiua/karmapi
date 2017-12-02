@@ -72,9 +72,21 @@ class Game:
         
 
 # Group A
-rus = Team('RUS')
-sau = Team('SAU')
-egy = Team('EGY')
+class rus(Team):
+    """ Russia
+
+    The hosts.
+    """
+    name = 'RUS'
+
+class sau(Team):
+    """ Saudi Arabia """
+
+    name = 'SAU"
+
+class egy(Team
+
+    name ='EGY')
 urg = Team('URG')
 
 # Group B

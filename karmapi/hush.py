@@ -35,8 +35,11 @@ import time
 
 from matplotlib import pyplot
 
+try:
+    import pyaudio
+except:
+    print("Please install pyaudio")
 
-import pyaudio
 import wave
 import numpy as np
 

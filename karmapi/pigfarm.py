@@ -802,10 +802,13 @@ def make_timestamp_index(frame):
 
 def filter_frame(frame, start, end):
 
+
+    fmt = '%d-%02-%02d %02d:%02d:02d'
     d = start
-    start = f'{d.year}-{d.month:02}-{d.day:02} {d.hour:02}:{d.minute:02}:{d.second:02}'
+    start = fmt % (d.year, d.month, d.day, d.hour, d.minute, d.second)
+
     d = end
-    end = f'{d.year}-{d.month:02}-{d.day:02} {d.hour:02}:{d.minute:02}:{d.second:02}'
+    end = fmt % (d.year, d.month, d.day, d.hour, d.minute, d.second)
 
     return frame[start:end]    
 

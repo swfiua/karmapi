@@ -176,7 +176,9 @@ def get_outfile(path, name):
 
     now = datetime.datetime.now()
 
-    path = path / f'{now.year}' / f'{now.month}' / f'{now.day}' / name
+    #path = path / f'{now.year}' / f'{now.month}' / f'{now.day}' / name
+
+    path = path / '%d' % now.year / '%d' % now.month / '%d' % now.day / name
 
     path.parent.mkdir(exist_ok=True, parents=True)
 
@@ -346,7 +348,7 @@ def timewarp_timestamps(data):
             mc = deltas.most_common(1)[0][0]
             if delta > mc:
                 timewarp -= delta - mc
-                print(f'warping warp by {delta - mc}')
+                print('warping warp byi %d' % (delta - mc,)
 
         row['timestamp'] = str(timestamp + timewarp)
 

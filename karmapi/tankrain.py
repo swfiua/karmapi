@@ -14,7 +14,7 @@ from collections import defaultdict
 
 import curio
 
-from karmapi import show, base
+from karmapi import base
 
 from karmapi import pigfarm, checksum
 
@@ -92,9 +92,12 @@ class TankRain(pigfarm.MagicCarpet):
 
         # FIXME -- create key bindings to select time
         date = self.date + datetime.timedelta(seconds=self.timewarp)
-        path = Path(f'{self.path}/{date.year}/{date.month}/{date.day}/').expanduser()
 
-        print(f'loading images for path: {path} v{self.version}v')
+        path = Path('%s/%d/%d/%d' % (self.path, date.year, date.month, date.day))
+
+        path = path.expanduser()
+
+        print('loading images for path: %s' % path)
 
         jpegs = path.glob('{}*.[jp][np]g'.format(self.version))
         gifs = path.glob('{}*.gif'.format(self.version))
@@ -178,7 +181,7 @@ class TankRain(pigfarm.MagicCarpet):
             if self.paths:
                 title = self.paths[self.ix]
             else:
-                title = f'{self.ix} : {len(self.paths)} {self.path}'
+                title = '%d : %d %s' % (self.ix, len(self.paths), str(self.path))
             
             self.compute_data()
             self.axes.clear()

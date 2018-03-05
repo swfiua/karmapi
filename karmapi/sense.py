@@ -178,7 +178,8 @@ def get_outfile(path, name):
 
     #path = path / f'{now.year}' / f'{now.month}' / f'{now.day}' / name
 
-    path = path / '%d' % now.year / '%d' % now.month / '%d' % now.day / name
+    path = path / str('%d' % now.year) / str('%d' % now.month)
+    path = path / str('%d' % now.day) / name
 
     path.parent.mkdir(exist_ok=True, parents=True)
 

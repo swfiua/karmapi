@@ -404,8 +404,6 @@ class Space:
         height /= wscale
         width /= wscale
 
-        print(f'load {width} {height}')
-        
         image = image.resize((int(width), int(height))).convert('RGBA')
 
         # cache image
@@ -664,9 +662,10 @@ class MagicCarpet(Space):
             loc=loc)
 
         acell = tab._cells[0, 0]
-        print('fontsize', acell.get_fontsize())
 
-        title = title or f'table location {loc}'
+        print('fontsize', acell.get_fontsize())
+        title = title or 'table location %s' % str(loc)
+
         self.axes.set_title(title)
         self.axes.set_axis_off()
 

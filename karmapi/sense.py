@@ -348,7 +348,7 @@ def timewarp_timestamps(data):
             mc = deltas.most_common(1)[0][0]
             if delta > mc:
                 timewarp -= delta - mc
-                print('warping warp byi %d' % (delta - mc,)
+                print('warping warp byi %d' % (delta - mc,))
 
         row['timestamp'] = str(timestamp + timewarp)
 
